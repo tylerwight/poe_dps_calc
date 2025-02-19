@@ -16,7 +16,7 @@ void dsp_start_frame();
 
 int main(int argc, char* argv[]){
     //setup SDL and OpenGL
-    SDL_Window *window = sdl_setup("PoE DPS Calculator", 1024, 768, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+    SDL_Window *window = sdl_setup("PoE DPS Calculator", 750, 400, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
     const char* glsl_version = "#version 130";
     SDL_GLContext gl_context = SDL_GL_CreateContext(window);
     SDL_GL_SetSwapInterval(1);  // enable vsync
@@ -48,7 +48,7 @@ int main(int argc, char* argv[]){
 
         //application actions
         dps_config_window(ioptr, input_buffer, &calculated_dps);
-        calculated_dps += 0.001;
+
 
         // render
         dps_render( window, &gl_context, ioptr, &clear_color);

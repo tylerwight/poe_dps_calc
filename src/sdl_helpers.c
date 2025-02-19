@@ -5,6 +5,21 @@
 #include <GL/glu.h>
 
 
+bool sdl_main_loop(SDL_Window *window){
+        SDL_Event e;
+        bool quit = false;
+        while (SDL_PollEvent(&e) != 0){
+            ImGui_ImplSDL2_ProcessEvent(&e);
+            if (e.type == SDL_QUIT)
+            quit = true;
+            if (e.type == SDL_WINDOWEVENT && e.window.event == SDL_WINDOWEVENT_CLOSE && e.window.windowID == SDL_GetWindowID(window))
+            quit = true;
+        }
+    return quit;
+}
+
+
+
 SDL_Window* sdl_setup(char *name, int size_x, int size_y, Uint32 flags){
     SDL_Window *window = NULL;
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -40,16 +55,5 @@ SDL_Window* sdl_setup(char *name, int size_x, int size_y, Uint32 flags){
 
 
 
-bool sdl_main_loop(SDL_Window *window){
-        SDL_Event e;
-        bool quit = false;
-        while (SDL_PollEvent(&e) != 0){
-            ImGui_ImplSDL2_ProcessEvent(&e);
-            if (e.type == SDL_QUIT)
-            quit = true;
-            if (e.type == SDL_WINDOWEVENT && e.window.event == SDL_WINDOWEVENT_CLOSE && e.window.windowID == SDL_GetWindowID(window))
-            quit = true;
-        }
-    return quit;
-}
+
 
