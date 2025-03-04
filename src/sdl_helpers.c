@@ -6,15 +6,15 @@
 
 
 bool sdl_main_loop(SDL_Window *window){
-        SDL_Event e;
-        bool quit = false;
-        while (SDL_PollEvent(&e) != 0){
-            ImGui_ImplSDL2_ProcessEvent(&e);
-            if (e.type == SDL_QUIT)
-            quit = true;
-            if (e.type == SDL_WINDOWEVENT && e.window.event == SDL_WINDOWEVENT_CLOSE && e.window.windowID == SDL_GetWindowID(window))
-            quit = true;
-        }
+    SDL_Event e;
+    bool quit = false;
+    while (SDL_PollEvent(&e) != 0){
+        ImGui_ImplSDL2_ProcessEvent(&e);
+        if (e.type == SDL_QUIT)
+        quit = true;
+        if (e.type == SDL_WINDOWEVENT && e.window.event == SDL_WINDOWEVENT_CLOSE && e.window.windowID == SDL_GetWindowID(window))
+        quit = true;
+    }
     return quit;
 }
 

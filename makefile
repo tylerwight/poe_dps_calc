@@ -3,7 +3,7 @@
 # Compiler and flags
 CC      := gcc
 CFLAGS  := -Wall -Wextra -Iinclude   # -Iinclude if you have headers there
-LIBS    := -lSDL2 -lGLEW -lGL        # Libraries to link against
+LIBS    := -lSDL2 -lGLEW -lGL     # Libraries to link against
 
 # Target and source definitions
 TARGET  := dps_calc
@@ -15,7 +15,7 @@ all: $(TARGET)
 
 # Link the final executable
 $(TARGET): $(OBJS)
-	$(CC) $(OBJS) include/libcimgui_sdl.so $(LIBS) -o $@
+	$(CC) $(OBJS) include/libcimgui_sdl.so $(LIBS) -Wl,-rpath=./include -o $@
 
 # Compile C sources into object files
 src/%.o: src/%.c
