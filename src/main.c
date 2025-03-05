@@ -32,7 +32,7 @@ void dps_config_window(ImGuiIO *ioptr, char *input_buffer, dps_vals *calculated_
 void dps_start_frame();
 dps_vals dps_calculate_dps(weapon *input_weapon);
 void dps_populate_weapon(const char *weapon_text, weapon *output_weapon);
-void dps_debug_window(ImGuiIO *ioptr, char *input_buffer, float *calculated_dps, weapon *weapon);
+void dps_debug_window(ImGuiIO *ioptr, char *input_buffer, dps_vals *calculated_dps, weapon *weapon);
 
 
 
@@ -234,7 +234,7 @@ void dps_cleanup(SDL_Window *window, SDL_GLContext *context){
 
 void dps_render(SDL_Window *window, SDL_GLContext *context, ImGuiIO *ioptr, ImVec4 *clear_color){
     igRender();
-    SDL_GL_MakeCurrent(window, context);
+    SDL_GL_MakeCurrent(window, *context);
     glViewport(0, 0, (int)ioptr->DisplaySize.x, (int)ioptr->DisplaySize.y);
     glClearColor(clear_color->x, clear_color->y, clear_color->z, clear_color->w);
     glClear(GL_COLOR_BUFFER_BIT);
@@ -252,7 +252,7 @@ void dps_start_frame(){
 
 
 
-void dps_debug_window(ImGuiIO *ioptr, char *input_buffer, float *calculated_dps, weapon *weapon){
+void dps_debug_window(ImGuiIO *ioptr, char *input_buffer, dps_vals *calculated_dps, weapon *weapon){
 
 
     //main window config
