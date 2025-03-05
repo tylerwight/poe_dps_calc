@@ -18,12 +18,7 @@ add_executable(${PROJECT_NAME} ${SOURCES})
 
 # Detect platform and apply platform-specific settings
 if(WIN32)
-    if(MSYS)
-        message(STATUS "Compiling for Windows (MSYS2)")
-    else()
-        message(STATUS "no msys2?")
-    endif()
-    
+    message(STATUS "Compiling for Windows")    
     # Remove default shared library prefix
     set(CMAKE_SHARED_LIBRARY_PREFIX "")
     
